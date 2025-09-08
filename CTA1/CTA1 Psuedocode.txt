@@ -1,0 +1,10 @@
+
+
+FUNCTION Main() {
+    //Printing a first name, last name, street address, city and zip code for a fictional person.
+    PRINT("First Name: Jim");
+    PRINT("Last Name: Jimberson");
+    PRINT("Street Adress: 100 Cabana Cay Cir");
+    PRINT("City: Panama City");
+    PRINT("Zip Code: 32405");
+}
