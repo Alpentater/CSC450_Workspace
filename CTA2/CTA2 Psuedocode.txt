@@ -1,0 +1,30 @@
+
+
+FUNCTION Main() {
+	
+	//Defining some string variables for use in the program
+	DEFINE String called 'firstString' equal to ""
+	DEFINE String called 'secondString' equal to ""
+	DEFINE String called 'combinedString' equal to ""
+	
+	//A for loop that runs 3 times, per assignement instructions.
+	FOR (i = 0; i < 3; i++){
+		//Just a header to display what loop we are on in the console.
+		PRINT("Loop #")
+		
+		//Asking the user to input their first of two strings and reading it from the console line...
+		PRINT("Enter your first string")
+		set 'firstString' equal to USERINPUT
+		
+		//Asking the user to input their second of two strings and reading it from the console line...
+		PRINT("Enter your second string")
+		set 'secondString' equal to USERINPUT
+		
+		//Combine the two strings and then print the result.
+		set 'combinedString' equal to 'firstString' PLUS 'secondString'
+		PRINT(combinedString)
+	}
+
+	//Wait for some input here as to not immediately close console when final output is show.
+ 
+}
