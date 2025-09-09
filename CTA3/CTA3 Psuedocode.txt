@@ -1,0 +1,35 @@
+
+//Main function / main entry point.
+FUNCTION Main() {
+    //Defining some variables to store user inputting ints.
+    DEFINE an int called 'numberOne' equal to 0
+    DEFINE an int called 'numberTwo' equal to 0
+    DEFINE an int called 'numberThree' equal to 0
+
+    /* Here, we ask the user in the console for three integers and store them
+    * in the variables we declared above.*/
+    PRINT("Enter the first integer: ")
+    SET 'numberOne' equal to user's input.
+    PRINT("Enter the second integer: ")
+    SET 'numberTwo' equal to user's input.
+    PRINT("Enter the third integer: ")
+    SET 'numberThree' equal to user's input.
+
+    //Defining some pointers for the integers we populated.
+    DEFINE a pointer int* called 'numOnePointer' set to address of 'numberOne';
+    DEFINE a pointer int* called 'numTwoPointer' set to address of 'numberTwo';
+    DEFINE a pointer int* called 'numThreePointer' set to address of 'numberThree';
+
+    //Printing memory addresses and their associated ingeter values.
+    PRINT("Memory address for first integer: " + numOnePointer + " | It's integer value was: " + numberOne)
+    PRINT("Memory address for second integer: "+  numTwoPointer + " | It's integer value was: " + numberTwo)
+    PRINT("Memory address for three integer: " + numThreePointer + " | It's integer value was: " + numberThree)
+
+
+    //Deleting and freeing up that memory!
+    DELETE numOnePointer;
+    DELETE numTwoPointer;
+    DELETE numThreePointer;
+
+    //Waiting for input as to not immediately close the console.
+}
