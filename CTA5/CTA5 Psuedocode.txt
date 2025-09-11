@@ -1,0 +1,38 @@
+//Main function / main entry point.
+FUNCTION Main() {
+	//Declaring some strings that hold filenames.
+	DEFINE a string called 'fileName' equal to "CSC450_CT5_mod5.txt"
+	DEFINE a string called 'fileNameReversed' equal to "CSC450-mod5-reverse.txt"
+    
+    //This part asks the user for some input to be appended to the file.
+    //It stores their input into a string called "usersInput".
+	PRINT("Enter some text to add to the end of the file: ")
+	DEFINE a string called 'usersInput' equal to the users input in the console.
+
+    //Here, we take what the user entered and append it to the end of the text file.
+    DEFINE an ofstream called 'outFile' in "append mode"
+    read the contents of 'fileName' using ofStream, adding "usersInput" to the end
+    close the ofstream
+
+ 	//Just an output line to the terminal, some feedback to let us know things are happening!
+    PRINT("Data appended to file")
+
+    //Read entire file content into a string
+    DEFINE an ifstream called 'inFile' in "read mode"
+    DEFINE a string called "fileText" and setting it equal to characters from inFile 
+    Close the inFile
+
+    //Reverse file content
+    //...(There is almost always a package function for this in languages.)
+    Reverse characters in fileText
+
+    // Write reversed content into new file
+   	DEFINE an ofstream called 'outPutFile' in "write mode" (Outputting to reverse text file)
+    Write the contents of fileText, which should now be reversed into the outPutFile
+    Close the outPutFile
+
+ 	//Just an output line to the terminal, some feedback to let us know things are happening!
+    Print("Reversed content written to fileNameReversed")
+
+    //Waiting for input as to not immediately close the console.
+}
