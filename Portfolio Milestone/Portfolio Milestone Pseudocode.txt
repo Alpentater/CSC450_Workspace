@@ -1,0 +1,53 @@
+//Defining a mutext for protecting the shared counter variable.
+DEFINE a mutex called 'mtx'
+
+//The counter variable being used throughout the threads.
+DEFINE an int called 'counter' 
+
+//Condition variable needed to check when the first thread is done.
+DEFINE a condition_variable called 'cv' 
+
+//What the condition variable checks to continue the 2nd thread
+DEFINE bool firstThreadFinished as FALSE
+
+//This function will count up. (From 0 to 20). One of the two threads will use this.
+FUNCTION countUp() {
+
+    //A simple for loop that increases the 'counter' variable by one 20 times.
+    FOR (int i = 0; i <= 20; i++) {
+        LOCK the 'counter' variable with the mutex called 'mtx' of a 'lock_guard' type
+        SET 'counter' equal to the value of 'i'
+        PRINT (the value of 'i')
+    }
+	
+	SET 'firstThreadFinished' equal to TRUE.
+	Tell the second thread, the 'countDown' function that it is ready to begin using a condition variable checking if 'firstThreadFinished' is true.
+}
+
+//This function will count down. (From 20 to 0). One of the two threads will use this.
+FUNCTION countDown() {
+    WAIT until 'firstThreadFinished' becomes true as explained just above.
+
+    FOR (int i = 20; i >= 0; i--) {
+        LOCK the 'counter' variable with the mutex called 'mtx' of a 'lock_guard' type
+        SET 'counter' equal to the value of 'i'
+        PRINT (the value of 'i')
+    }
+}
+
+//Main function or main entry point.
+FUNCTION main() {
+    //Starting the two different threads for the two different counters.
+    START THREAD (countUp)
+    START THREAD (countDown)
+
+    //Waiting them to both finish before continuing on in main.
+    JOIN THREAD (countUp)
+    JOIN THREAD (countDown)
+
+    //Our final debug message so we know everything finished succesfully!
+    PRINT ("Done!")
+
+    //Obligitory return statement for main function.
+    return 0;
+}
