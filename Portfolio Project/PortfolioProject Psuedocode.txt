@@ -1,0 +1,57 @@
+CLASS PortfolioProject {
+
+	DEFINE a new Object called 'mutex' 
+	DEFINE a new boolean called 'firstThreadDone' 
+	DEFINE a new integer called 'counter'
+
+	CLASS CountUp extends Thread {
+		//The 'run()' is what java needs for threads, like a main() function for a program.
+        FUNCTION run() {
+        	//This is the equivalent of mutexing, as done in the previous C++ program
+            synchronized (mutex) {
+            	//A simple for loop that increases the 'counter' variable by one 20 times.
+                FOR (int i = 0; i <= 20; i++) {
+                	//Incrementing the counter (making it match i)
+                	SET 'counter' equal to the value of 'i'
+                	PRINT the value of counter to the console
+                }
+                SET firstThreadDone equal to TRUE
+            }
+        }
+	}
+
+	//This subclass will serve as thread/function that will count down. (From 20 to 0).
+	CLASS CountDown extends Thread {
+        FUNCTION run() {
+        	//This is the equivalent of mutexing, as done in the previous C++ program
+            synchronized (mutex) {
+            	//This while loop makes sure the count down thread waits for the first to finish.
+                WHILE (firstThreadDone is equal to FALSE) {
+ 					YIELD
+                }
+
+                //Once the 'firstThreadDone' is set to true, the mutex no longer waits and continues
+                //synchronizing this thread encapsulating the for loop below that alters the shared
+                //counter resource.
+                FOR (int i = 20; i >= 0; i--) {
+                	SET 'counter' equal to the value of 'i'
+                	PRINT the value of counter to the console
+                }
+            }
+        }
+	}
+
+	//Main function, main entry point.
+	FUNCTION main() {
+
+        //Declaring the two threads.
+        DEFINE a new Thread called 'upThread' as the "CountUp()" class
+        DEFINE a new Thread called 'downThread' as the "CountDown()" class
+
+        // Start both threads
+        START upThread
+        START downThread
+
+       	PRINT("Done!")
+    }
+}
